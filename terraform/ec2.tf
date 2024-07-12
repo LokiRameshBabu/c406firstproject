@@ -67,6 +67,16 @@ data "aws_ami" "amazon_linux_2023" {
     values = ["hvm"]
   }
 
+    filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "block-device-mapping.volume-size"
+    values = ["8"]
+  }
+
   owners = ["amazon"]  # Amazon's owner ID for Amazon Linux AMIs
 }
 
@@ -78,6 +88,10 @@ resource "aws_instance" "my_instance" {
   key_name = aws_key_pair.generated_key.key_name
 
   vpc_security_group_ids = [aws_security_group.instance.id]
+
+  root_block_device {
+    volume_size = 8  # Set the volume size to 8GB
+  }
 
   tags = {
     Name = "c500"  # Replace with your Cohort Number
