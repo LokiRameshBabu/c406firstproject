@@ -87,6 +87,10 @@ resource "aws_instance" "my_instance" {
 
   associate_public_ip_address = true  # Enable public IPv4 and DNS hostname
 
+  
+  private_dns_name_options {
+    hostname_type = "resource-name"
+  }
 
   key_name = aws_key_pair.generated_key.key_name
 
