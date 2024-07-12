@@ -1,9 +1,17 @@
 # ec2.tf
 
+# Generate an SSH key pair
+resource "tls_private_key" "example" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+# Create AWS key pair using the generated public key
 resource "aws_key_pair" "generated_key" {
   key_name   = "c500-key"  # Replace with your desired key name
-  public_key = file("~/.ssh/id_rsa.pub")  # Replace with the path to your public key
+  public_key = tls_private_key.example.public_key_openssh
 }
+
 
 resource "aws_security_group" "instance" {
   name_prefix = "instance-sg-"
