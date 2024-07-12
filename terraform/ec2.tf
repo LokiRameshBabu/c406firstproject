@@ -85,6 +85,9 @@ resource "aws_instance" "my_instance" {
   ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = "t2.micro"  # Replace with your desired instance type
 
+  associate_public_ip_address = true  # Enable public IPv4 and DNS hostname
+
+
   key_name = aws_key_pair.generated_key.key_name
 
   vpc_security_group_ids = [aws_security_group.instance.id]
