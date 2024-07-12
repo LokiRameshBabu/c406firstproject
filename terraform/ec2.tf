@@ -72,7 +72,7 @@ data "aws_ami" "amazon_linux_2023" {
 
 # Read the docs -> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
 resource "aws_instance" "my_instance" {
-  ami           = data.aws_ami.amazon_linux_2023.value
+  ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = "t2.micro"  # Replace with your desired instance type
 
   key_name = aws_key_pair.generated_key.key_name
