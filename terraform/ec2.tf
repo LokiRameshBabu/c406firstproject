@@ -1,7 +1,7 @@
 # ec2.tf
 
 # Generate an SSH key pair
-resource "tls_private_key" "example" {
+resource "tls_private_key" "my_key" {
   algorithm = "RSA"
   rsa_bits  = 2048
 }
