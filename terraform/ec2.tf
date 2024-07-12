@@ -59,7 +59,7 @@ data "aws_ami" "amazon_linux_2023" {
 
   filter {
     name   = "name"
-    values = ["amzn-ami-al2023-*-hvm-*"]  # Use Amazon Linux 2023 AMIs that are HVM
+    values = ["al2023-ami*"]  # Use Amazon Linux 2023 AMIs that are HVM
   }
 
   filter {
