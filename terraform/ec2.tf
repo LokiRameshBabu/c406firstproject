@@ -89,9 +89,9 @@ resource "aws_instance" "my_instance" {
 
   
   private_dns_name_options {
-    hostname_type = "resource-name"
+    hostname_type = "ip-name"
     enable_resource_name_dns_a_record = true
-    enable_resource_name_dns_aaaa_record = true
+    enable_resource_name_dns_aaaa_record = false
   }
 
   key_name = aws_key_pair.generated_key.key_name
