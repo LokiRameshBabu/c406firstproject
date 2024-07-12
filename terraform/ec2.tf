@@ -1,7 +1,7 @@
 # ec2.tf
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "my-key"  # Replace with your desired key name
+  key_name   = "c500-key"  # Replace with your desired key name
   public_key = file("~/.ssh/id_rsa.pub")  # Replace with the path to your public key
 }
 
@@ -45,6 +45,7 @@ resource "aws_security_group" "instance" {
   }
 }
 
+# gets latest amazon linux 2023 ami
 data "aws_ssm_parameter" "amazon_linux_2023_ami" {
   name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-arm64"
 }
