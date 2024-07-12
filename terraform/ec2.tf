@@ -9,7 +9,7 @@ resource "tls_private_key" "my_key" {
 # Create AWS key pair using the generated public key
 resource "aws_key_pair" "generated_key" {
   key_name   = "c500-key"  # Replace with your desired key name
-  public_key = tls_private_key.example.public_key_openssh
+  public_key = tls_private_key.my_key.public_key_openssh
 }
 
 
