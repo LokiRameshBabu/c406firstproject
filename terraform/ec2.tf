@@ -8,7 +8,7 @@ resource "tls_private_key" "my_key" {
 
 # Create AWS key pair using the generated public key
 resource "aws_key_pair" "generated_key" {
-  key_name   = "c500-key"  # Replace with your desired key name
+  key_name   = "${var.cohort_number}-key"  # Replace with your desired key name
   public_key = tls_private_key.my_key.public_key_openssh
 }
 
@@ -103,6 +103,6 @@ resource "aws_instance" "my_instance" {
   }
 
   tags = {
-    Name = "c500"  # Replace with your Cohort Number
+    Name = var.cohort_number
   }
 }
