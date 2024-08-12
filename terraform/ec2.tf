@@ -53,36 +53,9 @@ resource "aws_security_group" "instance" {
   }
 }
 
-# Get the latest Amazon Linux 2023 AMI that supports t2.micro
-data "aws_ami" "amazon_linux_2023" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami*"]  # Use Amazon Linux 2023 AMIs that are HVM
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-    filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name   = "block-device-mapping.volume-size"
-    values = ["8"]
-  }
-
-  owners = ["amazon"]  # Amazon's owner ID for Amazon Linux AMIs
-}
-
 # Read the docs -> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
 resource "aws_instance" "my_instance" {
-  ami           = data.aws_ami.amazon_linux_2023.id
+  ami           = "ami-0ae8f15ae66fe8cda"
   instance_type = "t2.micro"  # Replace with your desired instance type
 
   associate_public_ip_address = true  # Enable public IPv4 and DNS hostname
